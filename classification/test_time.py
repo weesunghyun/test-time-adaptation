@@ -3,6 +3,7 @@ import torch
 import logging
 import numpy as np
 import methods
+from quantization.quantizer import apply_quantization
 
 from models.model import get_model
 from utils.misc import print_memory_info
@@ -32,6 +33,7 @@ def evaluate(description):
 
     # get the base model and its corresponding input pre-processing (if available)
     base_model, model_preprocess = get_model(cfg, num_classes, device)
+    base_model = apply_quantization(base_model)
 
     # append the input pre-processing to the base model
     base_model.model_preprocess = model_preprocess
