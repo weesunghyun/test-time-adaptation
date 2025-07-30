@@ -294,6 +294,18 @@ _C.TPT.N_CTX = 4                    # Number of tunable context tokens
 _C.TPT.CTX_INIT = "a_photo_of_a"    # Context initialization
 _C.TPT.CLASS_TOKEN_POS = "end"      # Position of the class token. Choose from: [end, middle, front]
 
+# --------------------------------- Quantization options -------------------- #
+_C.QUANT = CfgNode()
+
+# Whether to apply fake quantization
+_C.QUANT.QUANTIZE = False
+
+# Number of bits used for weights
+_C.QUANT.WEIGHT_BITS = 8
+
+# Number of bits used for activations
+_C.QUANT.ACTIVATION_BITS = 8
+
 # ------------------------------- Source options -------------------------- #
 _C.SOURCE = CfgNode()
 

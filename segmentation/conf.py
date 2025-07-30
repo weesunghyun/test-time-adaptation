@@ -163,6 +163,18 @@ _C.GTTA.PRETRAIN_STEPS_ADAIN = 20000
 _C.GTTA.USE_STYLE_TRANSFER = True
 _C.GTTA.LAMBDA_CE_TRG = 0.1
 
+# --------------------------------- Quantization options -------------------- #
+_C.QUANT = CfgNode()
+
+# Whether to apply fake quantization
+_C.QUANT.QUANTIZE = False
+
+# Number of bits used for weights
+_C.QUANT.WEIGHT_BITS = 8
+
+# Number of bits used for activations
+_C.QUANT.ACTIVATION_BITS = 8
+
 
 # ------------------------------- Source options ---------------------------- #
 _C.SOURCE = CfgNode()

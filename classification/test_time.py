@@ -33,7 +33,14 @@ def evaluate(description):
 
     # get the base model and its corresponding input pre-processing (if available)
     base_model, model_preprocess = get_model(cfg, num_classes, device)
-    base_model = apply_quantization(base_model)
+
+    # optionally apply fake quantization
+    if cfg.QUANT.QUANTIZE:
+        base_model = apply_quantization(
+            base_model,
+            weight_bits=cfg.QUANT.WEIGHT_BITS,
+            act_bits=cfg.QUANT.ACTIVATION_BITS,
+        )
 
     # append the input pre-processing to the base model
     base_model.model_preprocess = model_preprocess
