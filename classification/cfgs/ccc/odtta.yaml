@@ -1,0 +1,22 @@
+MODEL:
+  ADAPTATION: odtta
+  ARCH: resnet50
+TEST:
+  BATCH_SIZE: 64
+CORRUPTION:
+  DATASET: ccc
+  SEVERITY:
+    - 5
+  TYPE:
+    - baseline_20_transition+speed_1000_seed_44
+OPTIM:
+  METHOD: SGD
+  STEPS: 1
+  BETA: 0.9
+  LR: 0.00025
+  WD: 0.0
+ODTTA:
+  MOMENTUM: 0.9
+  THRESHOLD: 0.1
+  BUFFER_SIZE: 128
+  CANDIDATE_POOL: ""
