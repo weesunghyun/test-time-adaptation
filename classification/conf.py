@@ -294,6 +294,12 @@ _C.TPT.N_CTX = 4                    # Number of tunable context tokens
 _C.TPT.CTX_INIT = "a_photo_of_a"    # Context initialization
 _C.TPT.CLASS_TOKEN_POS = "end"      # Position of the class token. Choose from: [end, middle, front]
 
+# --------------------------------- LeanTTA options --------------------------- #
+_C.LEANTTA = CfgNode()
+
+_C.LEANTTA.TAU = 0.9
+_C.LEANTTA.LAMBDA = 0.9
+
 # --------------------------------- Quantization options -------------------- #
 _C.QUANT = CfgNode()
 
