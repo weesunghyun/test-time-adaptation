@@ -9,7 +9,12 @@ datasets=(
 )
 
 methods=(
+    "source"
+    "norm_test"
+    "norm_alpha"
     "ttn"
+    "odtta"
+    "leantta"
 )
 
 setting=reset_each_shift
@@ -18,14 +23,15 @@ seeds=(1)
 options=()
 
 combinations=(
-    "16 16"
-    "8 8"
-    "4 8"
-    "4 4"
+    "16 16"  # no quantization
+    "8 8"    # w8a8
+    "4 4"    # w4a4
+    "3 3"    # w3a3
 )
 
 for dataset in "${datasets[@]}"; do
     for method in "${methods[@]}"; do
+        cfg_method="$method"
         for combo in "${combinations[@]}"; do
             read -r w_bit a_bit <<< "$combo"
             echo "w_bit:${w_bit}, a_bit:${a_bit}"
@@ -34,7 +40,7 @@ for dataset in "${datasets[@]}"; do
                 for seed in ${seeds[*]}; do
                     if [ "$w_bit" -eq 16 ] && [ "$a_bit" -eq 16 ]; then
                         CUDA_VISIBLE_DEVICES=0 python test_time.py \
-                            --cfg "cfgs/$dataset/$method.yaml" \
+                            --cfg "cfgs/$dataset/${cfg_method}.yaml" \
                             SETTING $setting \
                             RNG_SEED $seed DETERMINISM True \
                             TEST.BATCH_SIZE $batch \
@@ -43,7 +49,7 @@ for dataset in "${datasets[@]}"; do
                             SAVE_DIR "./exp_alpha/w${w_bit}a${a_bit}/"
                     else
                         CUDA_VISIBLE_DEVICES=0 python test_time.py \
-                            --cfg "cfgs/$dataset/$method.yaml" \
+                            --cfg "cfgs/$dataset/${cfg_method}.yaml" \
                             SETTING $setting \
                             RNG_SEED $seed DETERMINISM True \
                             TEST.BATCH_SIZE $batch \
