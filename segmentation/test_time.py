@@ -21,6 +21,7 @@ from methods.cotta import CoTTA
 from methods.gtta import GTTA
 from methods.asm import ASM
 from methods.sm_ppm import SMPPM
+from quantization.quantizer import apply_quantization
 
 os.environ["WANDB_MODE"] = "offline"
 logger = logging.getLogger(__name__)
@@ -51,6 +52,7 @@ def main(description):
                             imagenet_init=cfg.MODEL.IMAGENET_INIT,
                             num_classes=cfg.MODEL.NUM_CLASSES,
                             model_name=cfg.MODEL.NAME)
+    base_model = apply_quantization(base_model)
 
     # setup test data loader
     test_loader = create_carla_loader(data_dir=cfg.DATA_DIR,
