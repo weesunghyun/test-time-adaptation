@@ -52,7 +52,13 @@ def main(description):
                             imagenet_init=cfg.MODEL.IMAGENET_INIT,
                             num_classes=cfg.MODEL.NUM_CLASSES,
                             model_name=cfg.MODEL.NAME)
-    base_model = apply_quantization(base_model)
+
+    if cfg.QUANT.QUANTIZE:
+        base_model = apply_quantization(
+            base_model,
+            weight_bits=cfg.QUANT.WEIGHT_BITS,
+            act_bits=cfg.QUANT.ACTIVATION_BITS,
+        )
 
     # setup test data loader
     test_loader = create_carla_loader(data_dir=cfg.DATA_DIR,
