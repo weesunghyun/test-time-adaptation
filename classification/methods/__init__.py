@@ -19,10 +19,11 @@ from methods.deyo import DeYO
 from methods.vte import VTE
 from methods.tpt import TPT
 from methods.ttn import TTN
+from methods.leantta import LeanTTA
 
 __all__ = [
     'Source', 'BNTest', 'BNAlpha', 'BNEMA', 'TTAug',
     'CoTTA', 'RMT', 'SANTA', 'RoTTA', 'AdaContrast', 'GTTA',
     'LAME', 'MEMO', 'Tent', 'EATA', 'SAR', 'RPL', 'ROID',
-    'CMF', 'DeYO', 'VTE', 'TPT', 'TTN',
+    'CMF', 'DeYO', 'VTE', 'TPT', 'TTN', 'LeanTTA',
 ]
